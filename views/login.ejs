@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <meta charset="UTF-8" />
+    <title>Flavor Fuel - Log In</title>
+</head>
+
+<body class="has-background-grey-light">
+    <section class="section">
+        <div class="container">
+            <div class="box">
+                <h1 class="title">Log In</h1>
+                <form action="/login" method="post">
+                    <div class="field">
+                        <label class="label">Username/Email</label>
+                        <div class="control">
+                            <input class="input" type="text" name="username" placeholder="Username">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Password</label>
+                        <div class="control">
+                            <input class="input" type="password" name="password" placeholder="Password">
+                        </div>
+                    </div>
+                    <div class="fild">
+                        <a href="/register">Don't have an account? Register here!</a>
+                    </div>
+                    <div class="filed">
+                        <a href="/forgot">Forgot your password?</a>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <button class="button is-dark" type="submit">Login</button>
+                            <button class="button is-dark" type="submit">Continue as guest</button>
+                        </div>
+                        <div class="control">
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
