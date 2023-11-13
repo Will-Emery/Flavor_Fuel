@@ -5,8 +5,8 @@ const path = require("path");
 
 // express set up
 app.set("view engine", "ejs");
-app.use(express.static("images"));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public"));
 
 // server set up for local development
 app.listen(3000, () => {
@@ -20,29 +20,27 @@ app.listen(3000, () => {
 app.get("/", (req, res) => {
 	res.render("login");
 });
-
 //login route
 app.get("/login", (req, res) => {
 	res.render("login");
 });
+//setup route
+app.get("/setup", (req, res) => {
+	res.render("setup");
+});
+//home route
+app.get("/home", (req, res) => {
+	res.render("home");
+});
 
 app.post("/login", (req, res) => {
-	// Implement your login logic here
+	// Implement login logic here
 	// Check if the credentials are valid and redirect as needed
 
+	//assume that the user doesn't have an account because the code in login.js didn't redirect
+	res.redirect("/setup");
+});
+
+app.post("/sumbit_setup", (req, res) => {
 	res.redirect("/home");
-
-	//create the user object
-	let ff_user_data = {
-		username: req.body.username,
-		//password: req.body.password,
-		goal: "none",
-		goal_cal: 0,
-		goal_protein: 0,
-		goal_carbs: 0,
-		goal_fat: 0,
-	};
-
-	//save the user object to local storage
-	localStorage.setItem("ff_user_data", JSON.stringify(ff_user_data));
 });

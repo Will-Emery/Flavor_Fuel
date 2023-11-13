@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <meta charset="UTF-8" />
+    <title>Flavor Fuel - Setup</title>
+    <script type="text/javascript" src="/js/user_data_management.js"></script>
+</head>
+
+<%- include('header') %>
+
+    <body class="has-background-grey-light">
+        <section class="section">
+            <div class="box">
+                <h1 class="title">Setup</h1>
+                <p>Welcome to FlavorFuel, your ultimate companion on the journey to a healthier lifestyle! 🍏🥦 Whether
+                    you're aiming to shed a few pounds, maintain a balanced diet, or simply become more mindful of what
+                    you eat, we're here to make your food tracking experience delightful and seamless.</p>
+                <br>
+                <p>With FlavorFuel, you can effortlessly log your meals, track your nutritional intake, and gain
+                    valuable insights into your eating habits. Our user-friendly interface and intuitive features make
+                    it easy to stay on top of your health and wellness goals.</p>
+                <br>
+                <p>Explore a world of flavors as you record your favorite recipes, discover new nutritious dishes, and
+                    embark on a flavorful adventure. Your wellness journey starts here, and we're excited to be a part
+                    of it!</p>
+                <br>
+                <p>Get ready to savor the taste of a healthier lifestyle with FlavorFuel. Let's eat well, live well,
+                    and
+                    thrive together! 🌱🍽️</p>
+            </div>
+            <div class="box">
+                <h1 class="title">Let's get started! Tell us about yourself.</h1>
+                <form onsubmit="init_user_data()" action="/sumbit_setup" method="post">
+                    <div class="field">
+                        <div class="control">
+                            <span id="gender" class="select is-rounded">
+                                <select required>
+                                    <option value="" disabled selected>Select your gender</option>
+                                    <option>Other</option>
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                </select>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="control">
+                            <input id="age" class="input is-rounded" type="number" placeholder="Age" required>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="control">
+                            <input class="input is-rounded" type="number" placeholder="Height (inches)" required>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="control">
+                            <input class="input is-rounded" type="number" placeholder="Current Weight (lbs)" required>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="control">
+                            <span class="select is-rounded">
+                                <select required>
+                                    <option value="" disabled selected>Select your weight goal</option>
+                                    <option>Lose Weight</option>
+                                    <option>Maintain Weight</option>
+                                    <option>Gain Weight</option>
+                                </select>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="control">
+                            <span class="select is-rounded">
+                                <select required>
+                                    <option value="" disabled selected>Select your activity level</option>
+                                    <option>Sedentary</option>
+                                    <option>Lightly Active</option>
+                                    <option>Moderately Active</option>
+                                    <option>Very Active</option>
+                                    <option>Extremely Active</option>
+                                </select>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <button class="button is-success is-rounded" type="submit">Submit</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </section>
+    </body>
+
+    <%- include('footer') %>
