@@ -6,11 +6,126 @@
     <meta charset="UTF-8" />
     <title>Flavor Fuel</title>
     <script src="/js/user_data_management.js"></script>
+    <script src="/js/goal_calculations.js"></script>
+    <script src="/js/dashboard_scripts.js"></script>
 </head>
 
 <%- include('header') %>
 
     <script>
-        user = load_user_data();
     </script>
+
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+        <title>Your Dashboard</title>
+    </head>
+
+    <body>
+
+        <section class="section">
+            <div class="container">
+                <h1 class="title">Your Dashboard</h1>
+
+                <!-- Calories Progress Bar -->
+                <div class="field">
+                    <div class="columns">
+                        <div class="column is-one-third">
+                            <label class="label">Calories</label>
+                            <label id="daily_calories" class="label" style="display: inline-block;"></label>
+                            <p style="display: inline-block;">of</p>
+                            <label id="daily_calorie_goal" class="label" style="display: inline-block;"></label>
+                        </div>
+                        <div class="column">
+                            <progress id="caloriesProgress" class="progress is-success" value="0" max="100"></progress>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Protein Progress Bar -->
+                <div class="field">
+                    <div class="columns">
+                        <div class="column is-one-third">
+                            <label class="label">Protein</label>
+                            <label id="daily_protein" class="label" style="display: inline-block;"></label>
+                            <p style="display: inline-block;">of</p>
+                            <label id="daily_protein_goal" class="label" style="display: inline-block;"></label>
+                        </div>
+                        <div class="column">
+                            <progress id="proteinProgress" class="progress is-link" value="0" max="100"></progress>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fat Progress Bar -->
+                <div class="field">
+                    <div class="columns">
+                        <div class="column is-one-third">
+                            <label class="label">Fat</label>
+                            <label id="daily_fat" class="label" style="display: inline-block;"></label>
+                            <p style="display: inline-block;">of</p>
+                            <label id="daily_fat_goal" class="label" style="display: inline-block;"></label>
+                        </div>
+                        <div class="column">
+                            <progress id="fatProgress" class="progress is-warning" value="0" max="100"></progress>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carbs Progress Bar -->
+                <div class="field">
+                    <div class="columns">
+                        <div class="column is-one-third">
+                            <label class="label">Carbs</label>
+                            <label id="daily_carbs" class="label" style="display: inline-block;"></label>
+                            <p style="display: inline-block;">of</p>
+                            <label id="daily_carbs_goal" class="label" style="display: inline-block;"></label>
+                        </div>
+                        <div class="column">
+                            <progress id="carbsProgress" class="progress is-danger" value="0" max="100"></progress>
+                        </div>
+                    </div>
+                </div>
+        </section>
+
+        <script>
+            //load in the user
+            let user = load_user_data();
+
+            //if the user has not set their goal yet, calculate it
+            if (user.goal_cal === 0) {
+                let bmr = calculate_bmr(user.gender, user.weight, user.height, user.age);
+                bmr = adjust_calories_for_activity(bmr, user.activity_level);
+                let calorie_goal = calculate_calorie_goal(bmr, user.goal);
+                console.log("calorie goal" + calorie_goal);
+                let macro_goal = calculate_macros(calorie_goal, user.protein_plan, user.weight);
+                add_init_calculations_to_user_data(calorie_goal, macro_goal);
+                //reload the user data
+                user = load_user_data();
+            }
+
+            document.getElementById("caloriesProgress").value = calc_percent(user.day_cal, user.goal_cal);
+            document.getElementById("proteinProgress").value = calc_percent(user.day_protein, user.goal_protein);
+            document.getElementById("fatProgress").value = calc_percent(user.day_fat, user.goal_fat);
+            document.getElementById("carbsProgress").value = calc_percent(user.day_carbs, user.goal_carbs);
+
+            //Setting the progress bar labels
+            document.getElementById("daily_calories").innerHTML = user.day_cal;
+            document.getElementById("daily_calorie_goal").innerHTML = user.goal_cal;
+            document.getElementById("daily_protein").innerHTML = user.day_protein;
+            document.getElementById("daily_protein_goal").innerHTML = user.goal_protein;
+            document.getElementById("daily_fat").innerHTML = user.day_fat;
+            document.getElementById("daily_fat_goal").innerHTML = user.goal_fat;
+            document.getElementById("daily_carbs").innerHTML = user.day_carbs;
+            document.getElementById("daily_carbs_goal").innerHTML = user.goal_carbs;
+        </script>
+
+    </body>
+
+    </html>
+
     <%- include('footer') %>

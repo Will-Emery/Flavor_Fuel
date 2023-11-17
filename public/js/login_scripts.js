@@ -4,6 +4,7 @@ function check_local_storage() {
 
 	//if the user has data in local storage, redirect to the home page
 	if (ff_user_data) {
+		//TODO: uncomment this code when the home page is ready
 		// console.log("User data found in local storage");
 		// console.log(ff_user_data);
 		// window.location.href = "/home";

@@ -35,12 +35,12 @@
                 <form onsubmit="init_user_data()" action="/sumbit_setup" method="post">
                     <div class="field">
                         <div class="control">
-                            <span id="gender" class="select is-rounded">
-                                <select required>
+                            <span class="select is-rounded">
+                                <select id="gender" required>
                                     <option value="" disabled selected>Select your gender</option>
-                                    <option>Other</option>
-                                    <option>Male</option>
-                                    <option>Female</option>
+                                    <option value="Other">Other</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
                                 </select>
                             </span>
                         </div>
@@ -54,24 +54,26 @@
 
                     <div class="field">
                         <div class="control">
-                            <input class="input is-rounded" type="number" placeholder="Height (inches)" required>
+                            <input id="height" class="input is-rounded" type="number" placeholder="Height (inches)"
+                                required>
                         </div>
                     </div>
 
                     <div class="field">
                         <div class="control">
-                            <input class="input is-rounded" type="number" placeholder="Current Weight (lbs)" required>
+                            <input id="weight" class="input is-rounded" type="number" placeholder="Current Weight (lbs)"
+                                required>
                         </div>
                     </div>
 
                     <div class="field">
                         <div class="control">
                             <span class="select is-rounded">
-                                <select required>
+                                <select id="weight_goal" required>
                                     <option value="" disabled selected>Select your weight goal</option>
-                                    <option>Lose Weight</option>
-                                    <option>Maintain Weight</option>
-                                    <option>Gain Weight</option>
+                                    <option value="Lose Weight">Lose Weight</option>
+                                    <option value="Maintain Weight">Maintain Weight</option>
+                                    <option value="Gain Weight">Gain Weight</option>
                                 </select>
                             </span>
                         </div>
@@ -80,24 +82,34 @@
                     <div class="field">
                         <div class="control">
                             <span class="select is-rounded">
-                                <select required>
+                                <select id="activity_level" required>
                                     <option value="" disabled selected>Select your activity level</option>
-                                    <option>Sedentary</option>
-                                    <option>Lightly Active</option>
-                                    <option>Moderately Active</option>
-                                    <option>Very Active</option>
-                                    <option>Extremely Active</option>
+                                    <option value="Sedentary">Sedentary</option>
+                                    <option value="Lightly Active">Lightly Active</option>
+                                    <option value="Moderately Active">Moderately Active</option>
+                                    <option value="Very Active">Very Active</option>
+                                    <option value="Extremely Active">Extremely Active</option>
                                 </select>
                             </span>
                         </div>
                     </div>
                     <div class="field">
                         <div class="control">
-                            <button class="button is-success is-rounded" type="submit">Submit</button>
+                            <span class="select is-rounded">
+                                <select id="protein_plan" required>
+                                    <option value="" disabled selected>Select your protein preferences</option>
+                                    <option value="High">High</option>
+                                    <option value="Medium">Medium</option>
+                                    <option value="Low">Low</option>
+                                </select>
+                            </span>
                         </div>
-                    </div>
+                        <div class="field">
+                            <div class="control">
+                                <button class="button is-success is-rounded" type="submit">Submit</button>
+                            </div>
+                        </div>
                 </form>
-
             </div>
         </section>
     </body>

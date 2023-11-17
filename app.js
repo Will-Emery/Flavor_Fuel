@@ -42,5 +42,9 @@ app.post("/login", (req, res) => {
 });
 
 app.post("/sumbit_setup", (req, res) => {
+	//sleep for 10 seconds
+	//this simulates a slow server
+	//this is for testing purposes only
+	//remove this code when the server is ready for production
 	res.redirect("/home");
 });
