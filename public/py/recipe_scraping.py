@@ -64,11 +64,11 @@ def write_recipe_data(recipe_data):
         f.write("\n")
         print(recipe_data["canonical_url"] + " written to file")
 
+
 def write_recipe_data_array(recipe_data_array):
     """Function: write_recipe_data_array
 
-    This function writes the recipe data to a json file.
-
+    This function writes the recipe data to a json file as an array.
 
     Args:
         recipe_data_array (list): The list containing the recipe data.
@@ -79,11 +79,29 @@ def write_recipe_data_array(recipe_data_array):
 
     file_path = "public/json/recipe_data.json"
 
-    with open(file_path, "a") as f:
-        for recipe_data in recipe_data_array:
-            f.write(json.dumps(recipe_data))
-            f.write("\n")
-            print(recipe_data["canonical_url"] + " written to file")
+    with open(file_path, "w") as f:  # Use "w" instead of "a" to write a new file
+        json.dump(recipe_data_array, f, indent=2)  # Use json.dump with indent for better readability
+        print("Recipe data written to file")
+
+def add_recipe_id_to_recipe_data():
+    """Function: add_recipe_id_to_recipe_data
+
+    This function adds a recipe id to the recipe data.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
+    #read in the recipe data
+    recipe_data_df = pd.read_json("public/json/recipe_data.json")
+
+    #add the recipe id
+    recipe_data_df["recipe_id"] = recipe_data_df.index
+
+    #write the recipe data to a json file
+    write_recipe_data_array(recipe_data_df.to_dict("records"))
 
 def main():
     """Function: main
@@ -106,4 +124,5 @@ def main():
 
 if __name__ == "__main__":
     print("This module is meant to be run directly from the command line right now.")
-    main()
+    # main()
+    add_recipe_id_to_recipe_data()

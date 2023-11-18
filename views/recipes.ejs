@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <title>Recipes</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.css" />
-    <script src="recipe_scripts.js"></script>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script type="module" src="/js/recipe_scripts.js"></script>
 </head>
 
 <%- include('header') %>
@@ -16,13 +17,155 @@
                 <div class="container">
                     <h1 class="title">Recipes</h1>
                     <p>This is the recipes section. Here you can look through some of the yummiest recipes on the
-                        interent! All of the recipes in our database have nutrition information as well as the needed
+                        internet! All of the recipes in our database have nutrition information as well as the needed
                         ingredients. Our goal is to help make meeting your goals easy and full of amazing flavor!</p>
+
+                    <!-- First Row of Filters -->
+                    <div class="field is-horizontal">
+                        <!-- Cuisine Filter -->
+                        <div class="field-body">
+                            <div class="field is-narrow">
+                                <div class="control">
+                                    <div class="box has-background-success is-rounded is-fullwidth has-fixed-size">
+                                        <div class="field-label is-normal">
+                                            <label class="label has-text-centered">Cuisine:</label>
+                                        </div>
+                                        <div class="select is-rounded is-fullwidth">
+                                            <select id="cuisineFilter" onchange="filterRecipesByCuisine()">
+                                                <option value="All" selected>All</option>
+                                                <!-- Populate this dynamically using js -->
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ingredient Amount Filter -->
+                        <div class="field-body">
+                            <div class="field is-narrow">
+                                <div class="control">
+                                    <div class="box has-background-warning is-rounded is-fullwidth has-fixed-size">
+                                        <div class="field-label is-normal">
+                                            <label class="label has-text-centered">Ingredient #:</label>
+                                        </div>
+                                        <input id="minIngredients" class="input is-rounded" type="number"
+                                            placeholder="Min Ingredients" onchange="filterRecipesByIngredients()">
+                                        <input id="maxIngredients" class="input is-rounded" type="number"
+                                            placeholder="Max Ingredients" onchange="filterRecipesByIngredients()">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Calories Filter -->
+                        <div class="field-body">
+                            <div class="field is-narrow">
+                                <div class="control">
+                                    <div class="box has-background-success is-rounded is-fullwidth has-fixed-size">
+                                        <div class="field-label is-normal">
+                                            <label class="label has-text-centered">Calories:</label>
+                                        </div>
+                                        <input id="minCalories" class="input is-rounded" type="number"
+                                            placeholder="Min Calories" onchange="filterRecipesByCalories()">
+                                        <input id="maxCalories" class="input is-rounded" type="number"
+                                            placeholder="Max Calories" onchange="filterRecipesByCalories()">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Second Row of Filters -->
+                    <div class="field is-horizontal">
+                        <!-- Protein Filter -->
+                        <div class="field-body">
+                            <div class="field is-narrow">
+                                <div class="control">
+                                    <div class="box has-background-warning is-rounded is-fullwidth has-fixed-size">
+                                        <div class="field-label is-normal">
+                                            <label class="label has-text-centered">Protein:</label>
+                                        </div>
+                                        <input id="minProtein" class="input is-rounded" type="number"
+                                            placeholder="Min Protein" onchange="filterRecipesByProtein()">
+                                        <input id="maxProtein" class="input is-rounded" type="number"
+                                            placeholder="Max Protein" onchange="filterRecipesByProtein()">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fat Filter -->
+                        <div class="field-body">
+                            <div class="field is-narrow">
+                                <div class="control">
+                                    <div class="box has-background-success is-rounded is-fullwidth has-fixed-size">
+                                        <div class="field-label is-normal">
+                                            <label class="label has-text-centered">Fat:</label>
+                                        </div>
+                                        <input id="minFat" class="input is-rounded" type="number" placeholder="Min Fat"
+                                            onchange="filterRecipesByFat()">
+                                        <input id="maxFat" class="input is-rounded" type="number" placeholder="Max Fat"
+                                            onchange="filterRecipesByFat()">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Carbs Filter -->
+                        <div class="field-body">
+                            <div class="field is-narrow">
+                                <div class="control">
+                                    <div class="box has-background-warning is-rounded is-fullwidth has-fixed-size">
+                                        <div class="field-label is-normal">
+                                            <label class="label has-text-centered">Carbs:</label>
+                                        </div>
+                                        <input id="minCarbs" class="input is-rounded" type="number"
+                                            placeholder="Min Carbs" onchange="filterRecipesByCarbs()">
+                                        <input id="maxCarbs" class="input is-rounded" type="number"
+                                            placeholder="Max Carbs" onchange="filterRecipesByCarbs()">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Recipe table -->
+                    <table class="table is-fullwidth">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Category</th>
+                                <th>Calories</th>
+                                <th>Protein</th>
+                                <th>Fat</th>
+                                <th>Carbs</th>
+                                <!-- Add more table headers based on your data -->
+                            </tr>
+                        </thead>
+                        <tbody id="recipeTable">
+                            <!-- Populate this tbody dynamically using JavaScript -->
+                        </tbody>
+                    </table>
+
                 </div>
             </div>
-
         </section>
 
+        <!-- Recipe Modal -->
+        <div id="recipeModal" class="modal">
+            <div class="modal-background" onclick="closeRecipeModal()"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Recipe Details</p>
+                    <button class="delete" aria-label="close" onclick="closeRecipeModal()"></button>
+                </header>
+                <section class="modal-card-body" id="recipeDetails">
+                    <!-- Details will be populated dynamically using JavaScript -->
+                </section>
+            </div>
+        </div>
     </body>
 
 </html>
