@@ -24,8 +24,6 @@ function init_user_data() {
 		historical_fat: [],
 		historical_food: [],
 	};
-	console.log(document.getElementById("gender").value);
-	console.log(ff_user_data);
 
 	//write the user data to local storage
 	localStorage.setItem("ff_user_data", JSON.stringify(ff_user_data));
@@ -37,13 +35,11 @@ function add_init_calculations_to_user_data(calorie_goal, macros) {
 	ff_user_data.goal_protein = macros.protein;
 	ff_user_data.goal_carbs = macros.carbs;
 	ff_user_data.goal_fat = macros.fat;
-	console.log(ff_user_data);
 	localStorage.setItem("ff_user_data", JSON.stringify(ff_user_data));
 }
 
 function load_user_data() {
 	let ff_user_data = localStorage.getItem("ff_user_data");
 	ff_user_data = JSON.parse(ff_user_data);
-	console.log(ff_user_data);
 	return ff_user_data;
 }

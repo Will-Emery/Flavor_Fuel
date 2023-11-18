@@ -25,69 +25,77 @@
         <title>Your Dashboard</title>
     </head>
 
-    <body>
-
+    <body class="has-background-grey-light">
         <section class="section">
-            <div class="container">
-                <h1 class="title">Your Dashboard</h1>
+            <div class="box">
+                <div class="container">
+                    <h1 class="title">Your Dashboard</h1>
 
-                <!-- Calories Progress Bar -->
-                <div class="field">
-                    <div class="columns">
-                        <div class="column is-one-third">
-                            <label class="label">Calories</label>
-                            <label id="daily_calories" class="label" style="display: inline-block;"></label>
-                            <p style="display: inline-block;">of</p>
-                            <label id="daily_calorie_goal" class="label" style="display: inline-block;"></label>
-                        </div>
-                        <div class="column">
-                            <progress id="caloriesProgress" class="progress is-success" value="0" max="100"></progress>
+                    <!-- Calories Progress Bar -->
+                    <div class="field">
+                        <div class="columns">
+                            <div class="column is-one-third">
+                                <label class="label">Calories</label>
+                                <label id="daily_calories" class="label" style="display: inline-block;"></label>
+                                <p style="display: inline-block;">of</p>
+                                <label id="daily_calorie_goal" class="label" style="display: inline-block;"></label>
+                            </div>
+                            <div class="column">
+                                <progress id="caloriesProgress" class="progress is-success" value="0"
+                                    max="100"></progress>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Protein Progress Bar -->
-                <div class="field">
-                    <div class="columns">
-                        <div class="column is-one-third">
-                            <label class="label">Protein</label>
-                            <label id="daily_protein" class="label" style="display: inline-block;"></label>
-                            <p style="display: inline-block;">of</p>
-                            <label id="daily_protein_goal" class="label" style="display: inline-block;"></label>
-                        </div>
-                        <div class="column">
-                            <progress id="proteinProgress" class="progress is-link" value="0" max="100"></progress>
+                    <!-- Protein Progress Bar -->
+                    <div class="field">
+                        <div class="columns">
+                            <div class="column is-one-third">
+                                <label class="label">Protein</label>
+                                <label id="daily_protein" class="label" style="display: inline-block;"></label>
+                                <p style="display: inline-block;">of</p>
+                                <label id="daily_protein_goal" class="label" style="display: inline-block;"></label>
+                            </div>
+                            <div class="column">
+                                <progress id="proteinProgress" class="progress is-link" value="0" max="100"></progress>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Fat Progress Bar -->
-                <div class="field">
-                    <div class="columns">
-                        <div class="column is-one-third">
-                            <label class="label">Fat</label>
-                            <label id="daily_fat" class="label" style="display: inline-block;"></label>
-                            <p style="display: inline-block;">of</p>
-                            <label id="daily_fat_goal" class="label" style="display: inline-block;"></label>
-                        </div>
-                        <div class="column">
-                            <progress id="fatProgress" class="progress is-warning" value="0" max="100"></progress>
+                    <!-- Fat Progress Bar -->
+                    <div class="field">
+                        <div class="columns">
+                            <div class="column is-one-third">
+                                <label class="label">Fat</label>
+                                <label id="daily_fat" class="label" style="display: inline-block;"></label>
+                                <p style="display: inline-block;">of</p>
+                                <label id="daily_fat_goal" class="label" style="display: inline-block;"></label>
+                            </div>
+                            <div class="column">
+                                <progress id="fatProgress" class="progress is-warning" value="0" max="100"></progress>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Carbs Progress Bar -->
-                <div class="field">
-                    <div class="columns">
-                        <div class="column is-one-third">
-                            <label class="label">Carbs</label>
-                            <label id="daily_carbs" class="label" style="display: inline-block;"></label>
-                            <p style="display: inline-block;">of</p>
-                            <label id="daily_carbs_goal" class="label" style="display: inline-block;"></label>
+                    <!-- Carbs Progress Bar -->
+                    <div class="field">
+                        <div class="columns">
+                            <div class="column is-one-third">
+                                <label class="label">Carbs</label>
+                                <label id="daily_carbs" class="label" style="display: inline-block;"></label>
+                                <p style="display: inline-block;">of</p>
+                                <label id="daily_carbs_goal" class="label" style="display: inline-block;"></label>
+                            </div>
+                            <div class="column">
+                                <progress id="carbsProgress" class="progress is-danger" value="0" max="100"></progress>
+                            </div>
                         </div>
-                        <div class="column">
-                            <progress id="carbsProgress" class="progress is-danger" value="0" max="100"></progress>
-                        </div>
+                    </div>
+
+                    <div class="has-text-centered">
+                        <a href="/food" class="button is-success">Add Food</a>
+                        <a href="/setup" class="button is-success">Change your Goals</a>
+                        <a href="/recipes" class="button is-success">Find Recipes</a>
                     </div>
                 </div>
         </section>

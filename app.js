@@ -32,6 +32,10 @@ app.get("/setup", (req, res) => {
 app.get("/home", (req, res) => {
 	res.render("home");
 });
+//recipes route
+app.get("/recipes", (req, res) => {
+	res.render("recipes");
+});
 
 app.post("/login", (req, res) => {
 	// Implement login logic here
