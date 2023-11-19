@@ -124,5 +124,5 @@ def main():
 
 if __name__ == "__main__":
     print("This module is meant to be run directly from the command line right now.")
-    # main()
+    main()
     add_recipe_id_to_recipe_data()

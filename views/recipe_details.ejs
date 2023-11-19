@@ -1,0 +1,99 @@
+<!-- recipe_details.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        <%= recipeDetails.title %>
+    </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<%- include('header') %>
+
+
+    <body class="has-background-grey-light">
+        <section class="section">
+            <div class="box">
+                <!-- image from recipe -->
+                <div class="image">
+                    <img src="<%= recipeDetails.image %>" alt=" Recipe Image">
+                </div>
+
+                <h1 class="title">
+                    <%= recipeDetails.title %>
+                </h1>
+                <div class="columns">
+                    <!-- Ingredients Section -->
+                    <div class="column is-half">
+                        <div class="box has-background-success recipe-card">
+                            <h2 class="subtitle">Ingredients</h2>
+                            <ul>
+                                <% recipeDetails.ingredients.forEach(function(ingredient) { %>
+                                    <li>
+                                        <!-- remove the first 3 characters from the ingredient field -->
+                                        <%= ingredient.slice(3) %>
+                                    </li>
+                                    <% }); %>
+                            </ul>
+                            </h3>
+                        </div>
+                    </div>
+
+                    <!-- Nutrition Section -->
+                    <div class="column is-half">
+                        <div class="box has-background-success recipe-card">
+                            <h2 class="subtitle">Nutrition Facts</h2>
+                            <ul>
+                                <li>Servings: <%= recipeDetails.yields %>
+                                <li>Calories: <%= recipeDetails.nutrients.calories %>
+                                </li>
+                                <li>Protein: <%= recipeDetails.nutrients.proteinContent %>
+                                </li>
+                                <li>Fat: <%= recipeDetails.nutrients.fatContent %>
+                                </li>
+                                <li>Carbs: <%= recipeDetails.nutrients.carbohydrateContent %>
+                                </li>
+                                <li>Saturated Fat: <%= recipeDetails.nutrients.saturatedFatContent %>
+                                </li>
+                                <li>Sugar: <%= recipeDetails.nutrients.sugarContent %>
+                                </li>
+                                <li>Sodium: <%= recipeDetails.nutrients.sodiumContent %>
+                                </li>
+                                <li>Fiber: <%= recipeDetails.nutrients.fiberContent %>
+                                </li>
+                                <li>Cholesterol: <%= recipeDetails.nutrients.cholesterolContent %>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="columns">
+                    <div class="column">
+                        <div class="box has-background-warning recipe-card">
+                            <h2 class="subtitle is-bold">Instructions</h2>
+                            <h3 class="subtitle">Total Time: <%= recipeDetails.total_time %> minutes</h3>
+                            <ol>
+                                <% recipeDetails.instructions_list.forEach(function(instruction) { %>
+                                    <li>
+                                        <%= instruction %>
+                                    </li>
+                                    <% }); %>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <p>Recipe sourced from: <%= recipeDetails.host %>
+                </p>
+
+
+            </div>
+    </body>
+
+</html>
+
+<%- include('footer') %>

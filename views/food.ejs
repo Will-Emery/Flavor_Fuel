@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Food Logger</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script type="text/javascript" src="/js/food_logger.js"></script>
+</head>
+
+<%- include('header') %>
+
+
+    <body class="has-background-grey-light">
+
+        <section class="section">
+            <div class="box">
+                <h1 class="title">Food Logger</h1>
+                <p>Track your daily food intake and nutritional information with our food logger! Simply enter the name
+                    of
+                    the food you ate, the number of calories, and the amount of protein, fat, and carbs. We'll take care
+                    of the rest!</p>
+                <form onsubmit="logFoodEntry()" action="/submit_food_entry" method="post">
+                    <div class="field">
+                        <div class="control">
+                            <input id="foodName" class="input is-rounded" type="text" placeholder="Food Name" required>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="control">
+                            <input id="calories" class="input is-rounded" type="number" placeholder="Calories" required>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="control">
+                            <input id="protein" class="input is-rounded" type="number" placeholder="Protein (g)"
+                                required>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="control">
+                            <input id="fat" class="input is-rounded" type="number" placeholder="Fat (g)" required>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="control">
+                            <input id="carbs" class="input is-rounded" type="number" placeholder="Carbs (g)" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="button is-success">Log Entry</button>
+            </div>
+
+        </section>
+    </body>
+
+</html>

@@ -187,30 +187,29 @@ function filterRecipesByIngredients(event, recipes) {
 	populateRecipeTable(filteredRecipes);
 }
 
-function openRecipeModal(recipe) {
-	const modal = document.getElementById("recipeModal");
-	const recipeDetails = document.getElementById("recipeDetails");
+// function openRecipeModal(recipe) {
+// 	const modal = document.getElementById("recipeModal");
+// 	const recipeDetails = document.getElementById("recipeDetails");
 
-	// Customize this part to display the details you want
-	recipeDetails.innerHTML = `
-      <h1 class="title">${recipe.title}</h1>
-      <p>Category: ${recipe.category}</p>
-      <p>Calories: ${recipe.nutrients.calories}</p>
-      <p>Protein: ${recipe.nutrients.proteinContent}</p>
-      <p>Fat: ${recipe.nutrients.fatContent}</p>
-      <p>Carbs: ${recipe.nutrients.carbohydrateContent}</p>
-      <!-- Add more details as needed -->
-    `;
+// 	// Customize this part to display the details you want
+// 	recipeDetails.innerHTML = `
+//       <h1 class="title">${recipe.title}</h1>
+//       <p>Category: ${recipe.category}</p>
+//       <p>Calories: ${recipe.nutrients.calories}</p>
+//       <p>Protein: ${recipe.nutrients.proteinContent}</p>
+//       <p>Fat: ${recipe.nutrients.fatContent}</p>
+//       <p>Carbs: ${recipe.nutrients.carbohydrateContent}</p>
+//       <!-- Add more details as needed -->
+//     `;
 
-	modal.classList.add("is-active");
-}
+// 	modal.classList.add("is-active");
+// }
 
-function closeRecipeModal() {
-	const modal = document.getElementById("recipeModal");
-	modal.classList.remove("is-active");
-}
+// function closeRecipeModal() {
+// 	const modal = document.getElementById("recipeModal");
+// 	modal.classList.remove("is-active");
+// }
 
-// Update populateRecipeTable function to attach a click event to each recipe title
 function populateRecipeTable(recipes) {
 	const tableBody = document.getElementById("recipeTable");
 	tableBody.innerHTML = ""; // Clear existing content
@@ -224,15 +223,20 @@ function populateRecipeTable(recipes) {
 		let fatCell = row.insertCell(4);
 		let carbsCell = row.insertCell(5);
 
-		titleCell.innerHTML = `<a href="javascript:void(0);" onclick="openRecipeModal(${JSON.stringify(
-			recipe
-		)})">${recipe.title}</a>`;
+		// Create a link with an href pointing to the recipe details route
+		const recipeDetailsLink = document.createElement("a");
+		console.log(recipe.id);
+		recipeDetailsLink.href = `/recipes/${recipe.recipe_id}`; // Replace "id" with the actual unique identifier for the recipe
+		recipeDetailsLink.textContent = recipe.title;
+		recipeDetailsLink.addEventListener("click", (event) => {
+			// Use the route to load the recipe details page
+		});
 
-		//trim title text to only show 25 characters and add "..." to the end
-		if (titleCell.textContent.length > 35) {
-			titleCell.innerHTML = `<a href="javascript:void(0);" onclick="openRecipeModal(${JSON.stringify(
-				recipe
-			)})">${titleCell.textContent.substring(0, 35) + "..."}</a>`;
+		titleCell.appendChild(recipeDetailsLink);
+
+		// Trim title text to only show 35 characters and add "..." to the end
+		if (recipe.title.length > 35) {
+			recipeDetailsLink.textContent = `${recipe.title.substring(0, 35)}...`;
 		}
 
 		categoryCell.textContent = recipe.category;
