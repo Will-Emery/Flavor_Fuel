@@ -7,6 +7,12 @@ function logFoodEntry() {
 	const food_carbs = document.getElementById("carbs").value;
 	const food_fat = document.getElementById("fat").value;
 
+	console.log(food_name);
+	console.log(food_calories);
+	console.log(food_protein);
+	console.log(food_carbs);
+	console.log(food_fat);
+
 	// Add the food entry to the user data
 	user_data.day_cal += food_calories;
 	user_data.day_protein += food_protein;
