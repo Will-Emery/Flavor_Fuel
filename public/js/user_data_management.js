@@ -41,5 +41,6 @@ function add_init_calculations_to_user_data(calorie_goal, macros) {
 function load_user_data() {
 	let ff_user_data = localStorage.getItem("ff_user_data");
 	ff_user_data = JSON.parse(ff_user_data);
+	console.log(ff_user_data);
 	return ff_user_data;
 }

@@ -107,8 +107,9 @@
             //if the user has not set their goal yet, calculate it
             if (user.goal_cal === 0) {
                 let bmr = calculate_bmr(user.gender, user.weight, user.height, user.age);
-                bmr = adjust_calories_for_activity(bmr, user.activity_level);
-                let calorie_goal = calculate_calorie_goal(bmr, user.goal);
+                bmr = adjust_calories_for_activity(bmr, user.activity);
+                let calorie_goal = calculate_calorie_goal(bmr, user.weight_goal);
+                console.log("calorie goal: " + calorie_goal)
                 let macro_goal = calculate_macros(calorie_goal, user.protein_plan, user.weight);
                 add_init_calculations_to_user_data(calorie_goal, macro_goal);
                 //reload the user data

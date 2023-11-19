@@ -16,30 +16,40 @@ function calculate_bmr(gender, weight, height, age) {
 	console.log("height in cm");
 	console.log(height);
 	if (gender === "Female") {
+		// print the BMR
+		console.log(10 * weight + 6.25 * height - 5 * age - 161);
 		return Number((10 * weight + 6.25 * height - 5 * age - 161).toFixed(2));
 	} else {
+		// print the BMR
+		console.log(10 * weight + 6.25 * height - 5 * age + 5);
 		return Number((10 * weight + 6.25 * height - 5 * age + 5).toFixed(2));
 	}
 }
 
 function adjust_calories_for_activity(bmr, activity) {
+	console.log("adjust calories for activity");
+	console.log("activity" + activity);
 	switch (activity) {
 		case "Sedentary":
+			console.log("sedentary");
 			return Number((bmr * 1).toFixed(2));
 		case "Lightly Active":
-			return Number((bmr * 1.12).toFixed(2));
+			return Number((bmr * 1.25).toFixed(2));
 		case "Moderately Active":
-			return Number((bmr * 1.27).toFixed(2));
+			return Number((bmr * 1.5).toFixed(2));
 		case "Very Active":
-			return Number((bmr * 1.45).toFixed(2));
+			return Number((bmr * 1.75).toFixed(2));
 		case "Extremely Active":
-			return Number((bmr * 1.65).toFixed(2));
+			console.log("extremely active");
+			console.log(bmr * 2);
+			return Number((bmr * 2).toFixed(2));
 		default:
 			return Number(bmr.toFixed(2));
 	}
 }
 
 function calculate_calorie_goal(bmr, goal) {
+	console.log("calculate calorie goal");
 	switch (goal) {
 		case "Lose Weight":
 			return Number((bmr - 500).toFixed(2));
